@@ -1,9 +1,11 @@
 /* Fonts */
 :root {
-  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Quicksand", sans-serif;
-  --nav-font: "Raleway", sans-serif;
+  --default-font: "Montserrat", "Pretendard", "Noto+Sans+KR", "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Montserrat", "Pretendard", "Noto+Sans+KR", sans-serif;
+  --nav-font: "Montserrat", "Pretendard", "Noto+Sans+KR", sans-serif;
 }
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
@@ -1663,7 +1665,7 @@ section .hero {
 .portfolio .image-container {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  aspect-ratio: 16/9;
   border-radius: 8px;
 }
 
@@ -1743,7 +1745,8 @@ section .hero {
 
 @media (min-width: 992px) {
   .portfolio .portfolio-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
   }
 }
 
@@ -1753,6 +1756,47 @@ section .hero {
     gap: 50px;
   }
 }
+
+
+
+.gnext,
+.gprev {
+  display: none !important;
+}
+
+
+.gclose {
+  width: 60px;
+  height: 60px;
+
+  background: transparent;
+  border: none;
+
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.gclose:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+
+.gslide-image img {
+  cursor: pointer !important;
+}
+
+.gprev,
+.gnext {
+  display: none !important;
+}
+
 
 /*--------------------------------------------------------------
 # Testimonials Section
@@ -2524,7 +2568,7 @@ section .hero {
 }
 
 .portfolio-details .content-section .project-overview {
-  text-align: center;
+  text-align: left;
 }
 
 .portfolio-details .content-section .project-overview h2 {
@@ -3456,11 +3500,4 @@ section .hero {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-}
-
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
 }
