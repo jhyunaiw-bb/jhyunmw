@@ -151,14 +151,6 @@ h6 {
   padding: 15px 0;
   transition: all 0.5s;
   z-index: 997;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.main {
-  padding-top: 78px;
 }
 
 .header .logo {
@@ -182,7 +174,18 @@ h6 {
 --------------------------------------------------------------*/
 /* Navmenu */
 .mobile-nav-toggle {
-  display: none;
+  background-color: var(--background-color);
+  padding: 4px;
+  color: var(--nav-color);
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  line-height: 0;
+  cursor: pointer;
+  display: block !important;
+  z-index: 998;
+  transition: 0.3s;
 }
 
 .mobile-nav-toggle:hover {
@@ -190,25 +193,33 @@ h6 {
 }
 
 .navmenu {
-  margin-left: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: -300px;
+  z-index: 997;
+  transition: 0.3s;
+  width: 300px;
+  overflow: hidden;
 }
 
 .navmenu ul {
-  display: flex;
+  display: block;
   list-style: none;
-  align-items: center;
-  gap: 6px;
-  padding: 0;
+  padding: 10px 0;
   margin: 0;
+  overflow-y: auto;
+  transition: 0.3s;
+  z-index: 998;
 }
 
 .navmenu a,
 .navmenu a:focus {
   color: var(--nav-dropdown-color);
-  padding: 10px 14px;
+  padding: 10px 20px;
   font-family: var(--nav-font);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -251,29 +262,13 @@ h6 {
 }
 
 .navmenu .dropdown ul {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
+  position: static;
   display: none;
   z-index: 99;
-  min-width: 220px;
-  padding: 8px 0;
-  margin: 0;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 10px 0;
+  margin: 10px 20px;
+  box-shadow: none;
   transition: all 0.5s ease-in-out;
-}
-
-.navmenu .dropdown {
-  position: relative;
-}
-
-.navmenu .dropdown ul a {
-  color: var(--nav-dropdown-color);
-  padding: 10px 16px;
-}
-
-.navmenu .dropdown:hover>ul {
-  display: block;
 }
 
 .navmenu .dropdown>.dropdown-active {
@@ -299,66 +294,6 @@ h6 {
   right: 0;
   background-color: var(--nav-mobile-background-color);
   transition: 0.3s;
-}
-
-@media (max-width: 1199px) {
-  .mobile-nav-toggle {
-    background-color: var(--background-color);
-    padding: 4px;
-    color: #f3f6ff;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 32px;
-    line-height: 0;
-    cursor: pointer;
-    display: block !important;
-    z-index: 998;
-    transition: 0.3s;
-  }
-
-  .navmenu {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: -300px;
-    z-index: 997;
-    transition: 0.3s;
-    width: 300px;
-    overflow: hidden;
-    margin-left: 0;
-  }
-
-  .navmenu ul {
-    display: block;
-    padding: 10px 0;
-    overflow-y: auto;
-    transition: 0.3s;
-    z-index: 998;
-  }
-
-  .navmenu a,
-  .navmenu a:focus {
-    color: var(--nav-dropdown-color);
-    padding: 10px 20px;
-    font-weight: 400;
-  }
-
-  .navmenu .dropdown ul {
-    position: static;
-    min-width: auto;
-    margin: 10px 20px;
-    box-shadow: none;
-    background-color: transparent;
-  }
-
-  .navmenu .dropdown ul a {
-    padding: 10px 20px;
-  }
-
-  .navmenu .dropdown:hover>ul {
-    display: none;
-  }
 }
 
 /*--------------------------------------------------------------
@@ -1729,12 +1664,19 @@ section .hero {
 
 video {
   width: 100%;
+  /* 부모 요소의 너비에 맞게 꽉 채움 [cite: 534] */
   height: auto;
+  /* 비율에 맞춰 높이 자동 조절 */
   max-width: 100%;
+  /* 영상이 부모보다 커지는 것을 방지 [cite: 534] */
   display: block;
+  /* 하단 여백 제거 */
   margin: 10px auto;
+  /* 중앙 정렬 및 위아래 간격 */
   border-radius: 8px;
+  /* 모서리를 부드럽게 (선택 사항) */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* 입체감 부여 [cite: 450, 451] */
 }
 
 .video-container {
@@ -1764,13 +1706,8 @@ video {
 .portfolio .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease-out;
-}
-
-.portfolio .image-container img.fit-contain {
   object-fit: contain;
-  object-position: center;
+  transition: transform 0.6s ease-out;
 }
 
 .portfolio .image-container .overlay {
@@ -2433,29 +2370,12 @@ video {
   margin-bottom: var(--section-spacing);
 }
 
-.portfolio-details .content-section .project-overview .overview-text-list {
-  text-align: left;
-  font-size: 1.125rem;
-  line-height: 1;
-  color: color-mix(in srgb, var(--default-color), transparent 15%);
-  margin-bottom: 3rem;
-}
-
-
 .portfolio-details .content-section .project-overview {
   text-align: left;
 }
 
 .portfolio-details .content-section .project-overview h2 {
-  font-size: 2rem;
-  font-weight: 300;
-  margin-bottom: 2rem;
-  color: var(--heading-color);
-  letter-spacing: -0.02em;
-}
-
-.portfolio-details .content-section .project-overview h4 {
-  font-size: 1.3rem;
+  font-size: 2.75rem;
   font-weight: 300;
   margin-bottom: 2rem;
   color: var(--heading-color);
@@ -2466,9 +2386,8 @@ video {
   font-size: 1.125rem;
   line-height: 1.8;
   color: color-mix(in srgb, var(--default-color), transparent 15%);
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
-
 
 .portfolio-details .content-section .project-overview .challenge-solution {
   display: grid;
