@@ -1,10 +1,3 @@
-/**
-* Template Name: MinimalFolio
-* Template URL: https://bootstrapmade.com/minimalfolio-bootstrap-portfolio-template/
-* Updated: Aug 05 2025 with Bootstrap v5.3.7
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
 (function () {
   "use strict";
@@ -22,43 +15,111 @@
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  /**
-   * Mobile nav toggle
-   */
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  document.addEventListener('DOMContentLoaded', () => {
 
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
-  }
-  if (mobileNavToggleBtn) {
-    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-  }
+    /**
+       * 모바일 네비게이션 토글 (햄버거 메뉴)
+       */
+    const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
+    if (mobileNavToggleBtn) {
+      mobileNavToggleBtn.addEventListener('click', function (e) {
+        document.querySelector('body').classList.toggle('mobile-nav-active');
+        // 햄버거 메뉴 아이콘 변경 (☰ <-> ✕)
+        if (document.querySelector('body').classList.contains('mobile-nav-active')) {
+          this.innerHTML = '✕';
+        } else {
+          this.innerHTML = '☰';
+        }
+      });
+    }
+
+    /**
+     * 모바일 네비게이션 드롭다운 아코디언 효과
+     */
+    document.querySelectorAll('.navmenu .dropdown > a').forEach(dropdownToggle => {
+      dropdownToggle.addEventListener('click', function (e) {
+        // 모바일 화면일 때만 JS 아코디언 동작 (PC는 CSS hover로 동작)
+        if (window.innerWidth < 992) {
+          e.preventDefault(); // 링크 이동 방지
+          this.parentNode.classList.toggle('active');
+        }
+      });
+    });
+
+    /**
+     * 포트폴리오 카테고리 필터링 및 스크롤 이동
+     */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-card');
+    const header = document.querySelector('.header');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        // 서브 메뉴 안의 필터 버튼인 경우 기본 링크 이동 방지
+        if (this.closest('.dropdown')) {
+          e.preventDefault();
+        }
+
+        const filterValue = this.getAttribute('data-filter');
+
+        // 1. 아이템 필터링 로직 (hide 클래스 추가/제거)
+        portfolioItems.forEach(item => {
+          const itemCategory = item.getAttribute('data-category');
+          if (filterValue === 'all' || filterValue === itemCategory) {
+            item.classList.remove('hide');
+          } else {
+            item.classList.add('hide');
+          }
+        });
+
+        // 2. 해당 섹션으로 부드럽게 스크롤 이동
+        const targetSectionId = this.getAttribute('href').replace('#', '');
+        const targetSection = document.getElementById(targetSectionId);
+
+        if (targetSection) {
+          // 상단 고정 헤더의 높이만큼 뺀 위치 계산
+          const headerOffset = header.offsetHeight;
+          const elementPosition = targetSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 20;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+
+        // 3. 클릭 후 열려있는 메뉴 접기 (모바일)
+        if (document.body.classList.contains('mobile-nav-active')) {
+          document.body.classList.remove('mobile-nav-active');
+          if (mobileNavToggleBtn) mobileNavToggleBtn.innerHTML = '☰';
+
+          // 열려있는 아코디언 모두 초기화
+          document.querySelectorAll('.navmenu .dropdown.active').forEach(el => {
+            el.classList.remove('active');
+          });
+        }
+      });
+    });
+
+    /**
+     * 창 크기 조절 시 모바일 메뉴 초기화
+     */
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 992) {
+        if (document.body.classList.contains('mobile-nav-active')) {
+          document.body.classList.remove('mobile-nav-active');
+          if (mobileNavToggleBtn) mobileNavToggleBtn.innerHTML = '☰';
+          document.querySelectorAll('.navmenu .dropdown.active').forEach(el => {
+            el.classList.remove('active');
+          });
+        }
       }
     });
 
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function (e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
+
 
   /**
    * Preloader
@@ -246,5 +307,8 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+
+  document.body.classList.remove('mobile-nav-active');
+
 
 })();

@@ -38,24 +38,24 @@
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center">
+  <header id="header" class="header d-flex align-items-center position-relative">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="./assets/img/logo/logo_long_black.png" alt="">
+        <img src="./assets/img/logo/logo_long_black.png" class="logo-default" alt="Logo">
+        <img src="./assets/img/logo/portfolio logo_logo_long_blue.png" class="logo-hover" alt="Logo Hover">
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
           <li><a href="#resume">Resume</a></li>
           <li class="dropdown"><a href="#portfolio"><span>Works</span>
               <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
-              <li><a href="#"><span>Motion Works</span></a></li>
-              <li><a href="#"><span>Editorial Design</span></a></li>
-              <li><a href="#"><span>Branding</span></a></li>
+              <li><a href="index.html?filter=motion#portfolio"><span>Motion Works</span></a></li>
+              <li><a href="index.html?filter=editorial#portfolio"><span>Editorial Design</span></a></li>
+              <li><a href="index.html?filter=branding#portfolio"><span>Branding</span></a></li>
             </ul>
           </li>
           <li><a href="#contact">Contact</a></li>
@@ -429,7 +429,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-motion">
               <div class="portfolio-card">
-                <a href="portfolio-details-1.html" class="details-link" title="View Project Details">
+                <a href="./portfolio-details-1.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/video/thumbnail/Commercial thumbnail.png" class="img-fluid"
                       alt="Motion Works" loading="lazy">
@@ -452,7 +452,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-motion">
               <div class="portfolio-card">
-                <a href="portfolio-details-2.html" class="details-link" title="View Project Details">
+                <a href="portfolio-details-2.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/video/thumbnail/AI Commercial thumbnail.png" class="img-fluid"
                       alt="Motion Works" loading="lazy">
@@ -475,9 +475,9 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-motion">
               <div class="portfolio-card">
-                <a href="portfolio-details-3.html" class="details-link" title="View Project Details">
+                <a href="portfolio-details-3.html" class="details-link" title="">
                   <div class="image-container">
-                    <a href="portfolio-details-3.html" class="details-link" title="View Project Details">
+                    <a href="portfolio-details-3.html" class="details-link" title="">
                       <img src="./assets/img/video/thumbnail/Illustrated Commercial thumbnail.png" class="img-fluid"
                         alt="Motion Works" loading="lazy">
                       <div class="overlay">
@@ -499,7 +499,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-motion">
               <div class="portfolio-card">
-                <a href="portfolio-details-4.html" class="details-link" title="View Project Details">
+                <a href="portfolio-details-4.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/video/thumbnail/Motion Design Brand Film thumbnail.png" class="img-fluid"
                       alt="Motion Works" loading="lazy">
@@ -521,7 +521,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-editorial">
               <div class="portfolio-card">
-                <a href="./portfolio-details-5.html" class="details-link" title="View Project Details">
+                <a href="./portfolio-details-5.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/works/bookcover-1200-03.gif" class="img-fluid" alt="Graphic Works"
                       loading="lazy">
@@ -545,7 +545,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-editorial">
               <div class="portfolio-card">
-                <a href="./portfolio-details-6.html" class="details-link" title="View Project Details">
+                <a href="./portfolio-details-6.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/works/poster-1200-02.gif" class="img-fluid" alt="Graphic Works"
                       loading="lazy">
@@ -568,7 +568,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-editorial">
               <div class="portfolio-card">
-                <a href="./portfolio-details-7.html" class="details-link" title="View Project Details">
+                <a href="./portfolio-details-7.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/works/Leaflet-04.gif" class="img-fluid" alt="Graphic Works" loading="lazy">
                     <div class="overlay">
@@ -589,7 +589,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-editorial">
               <div class="portfolio-card">
-                <a href="./portfolio-details-8.html" class="details-link" title="View Project Details">
+                <a href="./portfolio-details-8.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/works/web-1200-08.gif" class="img-fluid" alt="Graphic Works" loading="lazy">
                     <div class="overlay">
@@ -612,7 +612,7 @@
 
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-branding">
               <div class="portfolio-card">
-                <a href="./portfolio-details-9.html" class="details-link" title="View Project Details">
+                <a href="./portfolio-details-9.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/works/logo-08.gif" class="img-fluid" alt="Branding" loading="lazy">
                     <div class="overlay">
@@ -633,7 +633,7 @@
             <!-- portfolio-details-10 -->
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-branding">
               <div class="portfolio-card">
-                <a href="portfolio-details-10.html" class="details-link" title="View Project Details">
+                <a href="portfolio-details-10.html" class="details-link" title="">
                   <div class="image-container">
                     <img src="./assets/img/works/package-05.gif" class="img-fluid" alt="Branding" loading="lazy">
                     <div class="overlay">
@@ -656,9 +656,9 @@
             <!-- portfolio-details-11 -->
             <div class="col-lg-3 col-md-6 portfolio-item isotope-item filter-branding">
               <div class="portfolio-card">
-                <a href="portfolio-details-11.html" class="details-link" title="View Project Details">
+                <a href="portfolio-details-11.html" class="details-link" title="">
                   <div class="image-container">
-                    <img src="./assets/img/works/character-tori.jpg" class="img-fluid fit-contain" alt="Branding"
+                    <img src="./assets/img/works/character-tori.jpg" class="img-fluid img-contain" alt="Branding"
                       loading="lazy">
                     <div class="overlay">
                       <div class="overlay-content">
