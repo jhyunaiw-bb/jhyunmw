@@ -1,0 +1,426 @@
+/* --- 사용자가 쉽게 조절할 수 있는 사이드바/모바일 설정 --- */
+:root {
+  --sidebar-width: 320px;            /* 사이드바 고정 너비 */
+  
+  /* 글래스모피즘을 위한 반투명 배경색 (투명도 0.75) */
+  --sidebar-bg-color: rgba(255, 255, 255, 0.75); 
+  
+  --sidebar-font-size-lvl1: 18px;    /* 1단계 메뉴 글자 크기 (Home, Works 등) */
+  --sidebar-font-size-lvl2: 15px;    /* 2단계 메뉴 글자 크기 (Motion Works 등) */
+  --sidebar-font-size-lvl3: 14px;    /* 3단계 메뉴 글자 크기 (Commercial 등) */
+  
+  --sidebar-font-weight-lvl1: 700;   /* 1단계 글자 굵기 */
+  --sidebar-font-weight-lvl2: 600;   /* 2단계 글자 굵기 */
+  --sidebar-font-weight-lvl3: 400;   /* 3단계 글자 굵기 */
+  
+  --sidebar-text-color: #0a0f14;     /* 기본 텍스트 색상 */
+  --sidebar-hover-color: #6B8CA3;    /* 호버링 포인트 색상 */
+  
+  --hamburger-icon-size: 32px;       /* 햄버거 및 X 닫기 아이콘 크기 */
+  --hamburger-icon-color: #0a0f14;   /* 햄버거 아이콘 색상 */
+  --toggle-icon-size: 14px;          /* 드롭다운 화살표 아이콘 크기 */
+}
+
+/* Fonts - Unify to Montserrat and Noto Sans KR */
+:root {
+  --default-font: "Montserrat", "Noto Sans KR", sans-serif;
+  --heading-font: "Montserrat", "Noto Sans KR", sans-serif;
+  --nav-font: "Montserrat", "Noto Sans KR", sans-serif;
+}
+
+/* Global Colors */
+:root {
+  --background-color: #fcfcfc;
+  --default-color: #0a0f14;
+  --heading-color: #0f2943;
+  --accent-color: #6B8CA3;
+  --surface-color: #ffffff;
+  --contrast-color: #fcfcfc;
+  
+  --nav-color: #0a0f14;
+  --nav-hover-color: #6B8CA3;
+  --nav-dropdown-background-color: rgba(255, 255, 255, 0.98);
+  --nav-dropdown-color: #0a0f14;
+  --nav-dropdown-hover-color: #6B8CA3;
+}
+
+/* Color Presets */
+.light-background {
+  --background-color: #faf9fb;
+  --surface-color: #ffffff;
+}
+
+.dark-background {
+  --background-color: #060606;
+  --default-color: #fcfcfc;
+  --heading-color: #fcfcfc;
+  --surface-color: #252525;
+  --contrast-color: #fcfcfc;
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+  line-height: 1.8; /* 타이포그래피 디테일: 본문 행간 넓혀 여백 확보 */
+  overflow-x: hidden; 
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+  letter-spacing: -0.02em; /* 타이포그래피 디테일: 제목 자간 압축 */
+  line-height: 1.3;
+}
+
+p {
+  letter-spacing: -0.01em; /* 한글 가독성을 위한 미세 조정 */
+}
+
+ul {
+  list-style: none !important;
+  padding: 0;
+  margin: 0;
+}
+
+/*--------------------------------------------------------------
+# Global Header (페이지 상단을 꽉 채우는 직사각형 디자인)
+--------------------------------------------------------------*/
+.header {
+  color: var(--default-color);
+  background-color: var(--surface-color); 
+  padding: 15px 0;
+  transition: all 0.5s;
+  z-index: 9999; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03); 
+}
+
+.header .header-container {
+  border-radius: 0; 
+  box-shadow: none; 
+  padding: 0 40px; 
+  background: transparent;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.header .logo img {
+  max-height: 36px;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+.header .logo .logo-hover { display: none; }
+.header .logo:hover .logo-default { display: none; }
+.header .logo:hover .logo-hover {
+  display: inline-block;
+  transform: scale(1.05);
+}
+
+@media (max-width: 1200px) {
+  .header { padding: 15px 0; }
+  .header .header-container { padding: 0 20px; }
+}
+
+/*--------------------------------------------------------------
+# Desktop Navigation Menu
+--------------------------------------------------------------*/
+@media (min-width: 1200px) {
+  .navmenu ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .navmenu li {
+    position: relative;
+    padding: 0 15px;
+  }
+
+  /* 데스크탑 호버: 텐션 있는 모션 적용 */
+  .navmenu a {
+    position: relative;
+    color: var(--nav-color);
+    padding: 10px 5px;
+    font-size: 16px;
+    font-family: var(--nav-font);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: -0.02em; /* 타이포그래피 디테일: 네비게이션 자간 압축 */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  }
+
+  .navmenu a:hover,
+  .navmenu .active {
+    color: var(--nav-hover-color);
+    transform: translateX(6px); /* 우측으로 텐션 있게 밀림 */
+  }
+
+  /* 하단바 중앙에서 길어지는 모션 */
+  .navmenu a::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .navmenu a:hover::after,
+  .navmenu .active::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .navmenu a i {
+    font-size: 12px;
+    margin-left: 5px;
+    transition: 0.3s;
+  }
+
+  /* 데스크탑 드롭다운 스타일 */
+  .navmenu .dropdown ul {
+    background: var(--nav-dropdown-background-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    display: block; position: absolute; visibility: hidden;
+    left: 14px; top: 130%; opacity: 0; transition: 0.3s;
+    border-radius: 8px; z-index: 99;
+    padding: 15px 0;
+  }
+
+  .navmenu .dropdown ul li { min-width: 220px; padding: 0; }
+  .navmenu .dropdown ul a { padding: 12px 25px; font-size: 15px; text-transform: none; color: var(--nav-dropdown-color); transform: none; }
+  .navmenu .dropdown ul a::after { display: none; }
+  .navmenu .dropdown ul a:hover,
+  .navmenu .dropdown ul .active:hover { color: var(--nav-dropdown-hover-color); transform: translateX(6px); }
+  
+  .navmenu .dropdown:hover > ul { opacity: 1; top: 100%; visibility: visible; }
+  .navmenu .dropdown .dropdown ul { top: 0; left: -100%; visibility: hidden; }
+  .navmenu .dropdown .dropdown:hover > ul { opacity: 1; top: 0; left: -100%; visibility: visible; }
+}
+
+/*--------------------------------------------------------------
+# Mobile Navigation Sidebar (글래스모피즘 & 베지어 곡선 모션)
+--------------------------------------------------------------*/
+@media (max-width: 1199px) {
+  
+  .mobile-nav-toggle {
+    color: var(--hamburger-icon-color);
+    font-size: var(--hamburger-icon-size);
+    cursor: pointer;
+    transition: color 0.4s ease;
+    z-index: 10000;
+  }
+
+  /* 배경 블러 처리 및 어두워짐 (베지어 곡선으로 스르륵 나타남) */
+  body.mobile-nav-active::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); /* 사파리 호환성 */
+    z-index: 9997; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  body.mobile-nav-active::before {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* 사이드바 패널 (글래스모피즘 적용) */
+  .navmenu > ul {
+    position: fixed;
+    top: 0;
+    right: calc(-1 * var(--sidebar-width) - 50px); 
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar-bg-color); 
+    
+    /* 유리 질감을 위한 강력한 블러 효과 */
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px); 
+    border-left: 1px solid rgba(255, 255, 255, 0.4); 
+    
+    padding: 100px 30px 40px 30px; 
+    margin: 0;
+    overflow-y: auto;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+    z-index: 9998; 
+    
+    /* 묵직하고 우아한 안착을 만드는 텐션 모션 */
+    transition: right 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  body.mobile-nav-active .navmenu > ul {
+    right: 0; 
+  }
+
+  /* 모바일 네비게이션 a 태그 기본 설정 */
+  .navmenu a {
+    position: relative;
+    color: var(--sidebar-text-color);
+    font-family: var(--nav-font);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 5px;
+    width: max-content; 
+    letter-spacing: -0.02em; /* 타이포그래피 디테일: 좁은 자간 */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  }
+
+  /* 1단계 */
+  .navmenu > ul > li > a {
+    font-size: var(--sidebar-font-size-lvl1);
+    font-weight: var(--sidebar-font-weight-lvl1);
+  }
+  
+  /* 2단계 */
+  .navmenu .dropdown > ul > li > a {
+    font-size: var(--sidebar-font-size-lvl2);
+    font-weight: var(--sidebar-font-weight-lvl2);
+  }
+
+  /* 3단계 */
+  .navmenu .dropdown .dropdown > ul > li > a {
+    font-size: var(--sidebar-font-size-lvl3);
+    font-weight: var(--sidebar-font-weight-lvl3);
+  }
+
+  /* 호버 효과 */
+  .navmenu a:hover,
+  .navmenu .active {
+    color: var(--sidebar-hover-color);
+    transform: translateX(6px);
+  }
+
+  .navmenu a::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .navmenu a:hover::after,
+  .navmenu .active::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .navmenu a i {
+    font-size: var(--toggle-icon-size);
+    margin-left: 15px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* 하위 메뉴 아코디언 부드러운 펼침 */
+  .navmenu .dropdown > ul {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-left: 15px; 
+    transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, padding 0.3s ease;
+  }
+
+  .navmenu .dropdown:hover > ul {
+    max-height: 800px; 
+    opacity: 1;
+    padding-top: 5px;
+    padding-bottom: 15px;
+  }
+
+  .navmenu .dropdown:hover > a > i {
+    transform: rotate(180deg); 
+  }
+
+  body.mobile-nav-active { overflow: hidden; }
+}
+
+/*--------------------------------------------------------------
+# Global Sections & Footer
+--------------------------------------------------------------*/
+section, .section { color: var(--default-color); background-color: var(--background-color); padding: 60px 0; scroll-margin-top: 90px; overflow: clip; }
+@media (max-width: 1199px) { section, .section { scroll-margin-top: 70px; } }
+
+.section-title { text-align: center; padding-bottom: 60px; position: relative; }
+.section-title h2 { font-size: 42px; font-weight: 700; margin-bottom: 10px; background: linear-gradient(120deg, var(--heading-color), var(--accent-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.section-title p { margin: 15px auto 0; font-size: 16px; max-width: 700px; color: color-mix(in srgb, var(--default-color), transparent 25%); line-height: 1.8; }
+
+.footer { color: var(--default-color); background-color: var(--background-color); font-size: 14px; padding: 40px 0; position: relative; box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.05); }
+.footer .copyright p { margin-bottom: 0; }
+.footer .credits { margin-top: 10px; font-size: 13px; text-align: center; }
+
+/* Scroll Top Button */
+.scroll-top { position: fixed; visibility: hidden; opacity: 0; right: 15px; bottom: -15px; z-index: 99999; background-color: color-mix(in srgb, var(--accent-color), transparent 80%); width: 44px; height: 44px; border-radius: 50px; transition: all 0.4s; }
+.scroll-top i { font-size: 24px; color: var(--accent-color); line-height: 0; }
+.scroll-top:hover { background-color: color-mix(in srgb, var(--accent-color), transparent 50%); color: var(--contrast-color); }
+.scroll-top.active { visibility: visible; opacity: 1; bottom: 15px; }
+
+/* Hero Section */
+.hero { padding: 80px 0; position: relative; overflow: hidden; }
+.hero .content h2 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+.hero .content .lead { font-size: 1.25rem; margin-bottom: 2rem; color: color-mix(in srgb, var(--default-color), transparent 20%); line-height: 1.8; }
+.hero .cta-buttons { display: flex; gap: 1rem; margin-bottom: 3rem; }
+.hero .cta-buttons .btn { padding: 0.8rem 2rem; border-radius: 50px; transition: all 0.3s ease; }
+.hero .cta-buttons .btn-primary { background-color: var(--accent-color); color: var(--contrast-color); border: none; }
+.hero .cta-buttons .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+.hero .hero-image img { border-radius: 20px; }
+
+/* Resume & Portfolio Filters Nav */
+#resume .resume-navigation, .portfolio .portfolio-filters { display: flex !important; justify-content: center !important; gap: 60px !important; border: none !important; margin-bottom: 50px !important; padding: 0; }
+#resume .nav-pills .nav-link, .portfolio .portfolio-filters li { position: relative; background: transparent !important; border-radius: 0 !important; border: none !important; padding: 15px 5px !important; color: #999 !important; font-family: var(--nav-font); cursor: pointer; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease; display: inline-flex; align-items: center; letter-spacing: -0.02em; font-weight: 500;}
+#resume .nav-link:hover, #resume .nav-link.active, .portfolio .portfolio-filters li:hover, .portfolio .portfolio-filters li.filter-active { color: #333 !important; transform: translateX(6px); }
+#resume .nav-link::after, .portfolio .portfolio-filters li::after { content: ""; position: absolute; bottom: 5px; left: 50%; width: 100%; height: 2px; background-color: var(--accent-color); transform: translateX(-50%) scaleX(0); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+#resume .nav-link:hover::after, #resume .nav-link.active::after, .portfolio .portfolio-filters li:hover::after, .portfolio .portfolio-filters li.filter-active::after { transform: translateX(-50%) scaleX(1); }
+#resume .nav-link .nav-number { font-size: 0.85rem; opacity: 0.6; margin-right: 5px; }
+@media (max-width: 768px) { #resume .resume-navigation, .portfolio .portfolio-filters { gap: 20px !important; flex-wrap: wrap; } }
+
+/* Portfolio Grid & Card */
+.portfolio-card { background: transparent; border-radius: 0; overflow: hidden; box-shadow: none; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.portfolio-card:hover { transform: translateY(-10px); }
+.portfolio-image { border-radius: 12px; overflow: hidden; aspect-ratio: 16/10; }
+.portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.portfolio-card:hover .portfolio-image img { transform: scale(1.05); }
+.video-container { width: 100%; max-height: 900px; margin: 0 auto; aspect-ratio: 16/9; margin-bottom: 50px; border-radius: 12px; overflow: hidden; }
+
+/* Contact Section */
+.contact .section-category { font-family: var(--heading-font); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.contact .content h2 { font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+.contact .contact-info .info-item { font-size: 1.1rem; }
+.contact .contact-info .info-item i { color: var(--accent-color); font-size: 1.4rem; }
+.experience-item h3 { color: var(--heading-color); letter-spacing: -0.02em; }

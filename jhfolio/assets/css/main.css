@@ -145,22 +145,43 @@ ul {
   }
 }
 
+.header .logo {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 36px;
+  /* 로고 높이에 맞게 조절 */
+}
+
+
 .header .logo img {
-  max-height: 36px;
+  max-height: 100%;
   margin-right: 8px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header .logo .logo-hover {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.header .logo .logo-default {
+  position: relative;
+  opacity: 0.7;
+  z-index: 1;
 }
 
 .header .logo:hover .logo-default {
-  display: none;
+  opacity: 0;
 }
 
 .header .logo:hover .logo-hover {
   display: inline-block;
+  opacity: 1;
   transform: scale(1.05);
 }
 
@@ -685,6 +706,11 @@ section,
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-contain {
+  object-fit: contain !important;
+  padding: 15px;
 }
 
 .portfolio-card:hover .portfolio-image img {
