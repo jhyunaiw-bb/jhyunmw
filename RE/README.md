@@ -1,2 +1,0 @@
-# jhyunmw
-portfolio
