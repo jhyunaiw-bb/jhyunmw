@@ -84,33 +84,46 @@
 
   <main class="main">
     <section id="hero" class="hero section">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row align-items-center content">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h2>Crafting Digital Experiences with Passion</h2>
-            <p class="lead">Transforming ideas into elegant solutions through creative design and innovative development
+      <video autoplay loop muted playsinline class="hero-bg-video">
+        <source src="./assets/works/video/showreel.mp4" type="video/mp4">
+      </video>
+
+      <div class="hero-overlay"></div>
+
+      <div class="container position-relative z-3 text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 hero-content">
+            <h2 class="display-3 fw-bold mb-4" style="color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+              Crafting Digital Experiences <br>with Passion
+            </h2>
+            <p class="lead mb-5" style="color: rgba(255,255,255,0.85); font-weight: 400;">
+              Transforming ideas into elegant solutions through creative design and innovative development
             </p>
-            <div class="cta-buttons" data-aos="fade-up" data-aos-delay="300">
-              <a href="#portfolio" class="btn btn-primary">View My Work</a>
-            </div>
-            <div class="col-lg-6">
-              <div class="hero-image">
-                <img src="assets/img/profile/profile-1.webp" alt="Portfolio Hero Image" class="img-fluid"
-                  data-aos="zoom-out" data-aos-delay="300">
-                <div class="shape-1"></div>
-                <div class="shape-2"></div>
-              </div>
+            <div class="cta-buttons justify-content-center" data-aos="fade-up" data-aos-delay="300">
+              <a></a>
+              <a></a>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <!-- *(💡 **주의:** `<source src="...">` 부분의 파일 경로는 나중에 실제 10~15초짜리 가벼운 `.mp4` 쇼릴 파일을 만드신 후 해당 파일 이름으로 바꿔주시면 됩니다.)* -->
+
 
     <section id="resume" class="resume section light-background">
       <div class="container section-title" data-aos="fade-up">
         <h2>Resume</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div>
+      <div class="container section-title" data-aos="fade-up">
+        <h3>Resume</h3>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div>
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Resume</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div>
+
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <ul class="nav nav-pills resume-navigation justify-content-center" id="resume-tabs" role="tablist">
           <li class="nav-item" role="presentation">
@@ -404,30 +417,6 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
-
-  <script>
-    window.addEventListener('load', function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const filterKey = urlParams.get('filter');
-
-      if (filterKey) {
-        const targetFilter = document.querySelector(`.portfolio-filters li[data-filter=".filter-${filterKey}"]`);
-
-        if (targetFilter) {
-          setTimeout(() => {
-            document.querySelectorAll('.portfolio-filters li').forEach(li => li.classList.remove('filter-active'));
-            targetFilter.classList.add('filter-active');
-
-            targetFilter.click();
-
-            if (typeof iso !== 'undefined') {
-              iso.arrange({ filter: `.filter-${filterKey}` });
-            }
-          }, 500);
-        }
-      }
-    });
-  </script>
 
 </body>
 

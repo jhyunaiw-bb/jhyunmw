@@ -1,25 +1,25 @@
 /* --- 사용자가 쉽게 조절할 수 있는 사이드바/모바일 설정 --- */
 :root {
-  --sidebar-width: 300px;
+  --sidebar-width: 320px;
   /* 사이드바 고정 너비 (가장 긴 텍스트 기준 여유 있게 설정) */
-  --sidebar-bg-color: rgba(255, 255, 255, 0.98);
+  --sidebar-bg-color: rgba(255, 255, 255, 0.75);
   /* 사이드바 배경색 */
 
-  --sidebar-font-size-lvl1: 18px;
+  --sidebar-font-size-lvl1: 16px;
   /* 1단계 메뉴 글자 크기 (Home, Works 등) */
-  --sidebar-font-size-lvl2: 15px;
+  --sidebar-font-size-lvl2: 14px;
   /* 2단계 메뉴 글자 크기 (Motion Works 등) */
   --sidebar-font-size-lvl3: 14px;
   /* 3단계 메뉴 글자 크기 (Commercial 등) */
 
-  --sidebar-font-weight-lvl1: 600;
+  --sidebar-font-weight-lvl1: 700;
   /* 1단계 글자 굵기 */
-  --sidebar-font-weight-lvl2: 400;
+  --sidebar-font-weight-lvl2: 500;
   /* 2단계 글자 굵기 */
   --sidebar-font-weight-lvl3: 400;
   /* 3단계 글자 굵기 */
 
-  --sidebar-text-color: #0a0f14;
+  --sidebar-text-color: #333;
   /* 기본 텍스트 색상 */
   --sidebar-hover-color: #6B8CA3;
   /* 호버링 포인트 색상 */
@@ -28,7 +28,7 @@
   /* 햄버거 및 X 닫기 아이콘 크기 */
   --hamburger-icon-color: #0a0f14;
   /* 햄버거 아이콘 색상 */
-  --toggle-icon-size: 14px;
+  --toggle-icon-size: 12px;
   /* 드롭다운 화살표 아이콘 크기 */
 }
 
@@ -79,13 +79,18 @@ body {
   background-color: var(--background-color);
   font-family: var(--default-font);
   overflow-x: hidden;
+  line-height: 1.8;
   /* 사이드바 가로 스크롤 방지 */
 }
 
 a {
   color: var(--accent-color);
   text-decoration: none;
-  transition: 0.3s;
+  transition: 0.8s;
+}
+
+p {
+  letter-spacing: -0.01em;
 }
 
 a:hover {
@@ -101,6 +106,8 @@ h5,
 h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
 }
 
 ul {
@@ -117,7 +124,7 @@ ul {
   background-color: var(--surface-color);
   /* 백그라운드 색상 지정 */
   padding: 15px 0;
-  transition: all 0.5s;
+  transition: all 0.8s;
   z-index: 9999;
   /* 모바일 사이드바보다 위에 위치 */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -157,7 +164,7 @@ ul {
 .header .logo img {
   max-height: 100%;
   margin-right: 8px;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header .logo .logo-hover {
@@ -213,13 +220,14 @@ ul {
   .navmenu a {
     position: relative;
     color: var(--nav-color);
-    padding: 10px 5px;
+    padding: 10px 15px;
     font-size: 16px;
     font-family: var(--nav-font);
     font-weight: 500;
     display: inline-flex;
     align-items: center;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .navmenu a:hover,
@@ -240,7 +248,7 @@ ul {
     background-color: var(--accent-color);
     transform: translateX(-50%) scaleX(0);
     transform-origin: center;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .navmenu a:hover::after,
@@ -264,7 +272,7 @@ ul {
     left: spx;
     top: 130%;
     opacity: 0;
-    transition: 0.3s;
+    transition: 0.5s;
     border-radius: 8px;
     z-index: 99;
     padding: 15px 0;
@@ -323,7 +331,7 @@ ul {
     color: var(--hamburger-icon-color);
     font-size: var(--hamburger-icon-size);
     cursor: pointer;
-    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10000;
   }
 
@@ -332,7 +340,7 @@ ul {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     z-index: 9997;
     /* 헤더보다 아래 */
@@ -362,7 +370,14 @@ ul {
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
     z-index: 9998;
     /* 헤더 9999 보다 아래에 위치시켜 헤더 고정 유지 */
-    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: right 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* 1. 메뉴 사이의 빈틈 제거 */
+  .navmenu ul li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
   }
 
   body.mobile-nav-active .navmenu>ul {
@@ -378,11 +393,11 @@ ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 0;
+    padding: 15px 20px;
     margin-bottom: 5px;
     width: max-content;
     /* 텍스트 길이에 맞춤 */
-    transition: transform 0.3s cubic-bezier(0.3, 0, 0.1, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.3, 0, 0.1, 1), color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* 텍스트 계층 구조 설정 */
@@ -422,7 +437,7 @@ ul {
     background-color: var(--accent-color);
     transform: translateX(-50%) scaleX(0);
     transform-origin: center;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .navmenu a:hover::after,
@@ -434,7 +449,7 @@ ul {
   .navmenu a i {
     font-size: var(--toggle-icon-size);
     margin-left: 15px;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* 하위 메뉴 Accordion(아래로 밀려남) 스타일 */
@@ -444,7 +459,7 @@ ul {
     overflow: hidden;
     padding-left: 15px;
     /* 들여쓰기 */
-    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Works 등 상위 메뉴 호버 시 하위 메뉴 부드럽게 펼쳐짐 */
@@ -464,6 +479,26 @@ ul {
   body.mobile-nav-active {
     overflow: hidden;
   }
+
+
+
+  /* 3. 하위 메뉴가 열렸을 때 부모 영역이 줄어들지 않도록 고정 */
+  .navmenu .dropdown.active {
+    background-color: rgba(49, 210, 242, 0.03);
+    /* 열린 메뉴 식별 */
+  }
+
+  /* 4. [핵심] 마우스가 지나가는 '투명 다리' 생성 */
+  .navmenu .dropdown>ul::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+  }
+
 }
 
 /*--------------------------------------------------------------
@@ -546,7 +581,7 @@ section,
   width: 44px;
   height: 44px;
   border-radius: 50px;
-  transition: all 0.4s;
+  transition: all 0.6s;
 }
 
 .scroll-top i {
@@ -595,7 +630,7 @@ section,
 .hero .cta-buttons .btn {
   padding: 0.8rem 2rem;
   border-radius: 50px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero .cta-buttons .btn-primary {
@@ -634,7 +669,7 @@ section,
   color: #999 !important;
   font-family: var(--nav-font);
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
 }
@@ -644,7 +679,7 @@ section,
 .portfolio .portfolio-filters li:hover,
 .portfolio .portfolio-filters li.filter-active {
   color: #333 !important;
-  transform: translateX(5px);
+  transform: translateX(6px);
 }
 
 #resume .nav-link::after,
@@ -657,7 +692,7 @@ section,
   height: 2px;
   background-color: var(--accent-color);
   transform: translateX(-50%) scaleX(0);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #resume .nav-link:hover::after,
@@ -688,7 +723,7 @@ section,
   border-radius: 0;
   overflow: hidden;
   box-shadow: none;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .portfolio-card:hover {
@@ -705,7 +740,7 @@ section,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .img-contain {
@@ -717,15 +752,142 @@ section,
   transform: scale(1.05);
 }
 
+----------------------------------------------------------------------추가
+
+/*--------------------------------------------------------------
+# Portfolio Details Section
+--------------------------------------------------------------*/
+.portfolio-details {
+  padding-top: 40px;
+}
+
+/* 왼쪽 이미지 간격 조절 */
+.portfolio-details .img-fluid {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  /* 이미지 사이의 여백 */
+}
+
+/* 오른쪽 설명 박스 (Sticky 설정) */
+.portfolio-details .position-sticky {
+  top: 100px;
+  /* 헤더 높이에 맞춰 조정 */
+}
+
+.portfolio-details .portfolio-description h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  font-family: var(--nav-font);
+}
+
+.portfolio-details .portfolio-description p {
+  padding: 0;
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* 인용구(개선하고 싶은 점) 디자인 */
+.portfolio-details .testimonial-item {
+  padding: 30px;
+  margin: 30px 0;
+  background: #f8f9fa;
+  border-radius: 10px;
+  position: relative;
+  border-left: 3px solid var(--accent-color);
+}
+
+.portfolio-details .testimonial-item .quote-icon-left,
+.portfolio-details .testimonial-item .quote-icon-right {
+  color: color-mix(in srgb, var(--accent-color), transparent 50%);
+  font-size: 24px;
+  line-height: 0;
+}
+
+.portfolio-details .testimonial-item span {
+  font-style: italic;
+  display: block;
+  line-height: 1.8;
+  color: #444;
+}
+
+/* 하단 프로젝트 정보 박스 */
+.portfolio-details .portfolio-info {
+  padding: 30px;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  border-radius: 10px;
+}
+
+.portfolio-details .portfolio-info h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  font-family: var(--nav-font);
+}
+
+.portfolio-details .portfolio-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+
+.portfolio-details .portfolio-info ul li {
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-details .portfolio-info ul strong {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #999;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+/* 도구 아이콘 정렬 */
+.portfolio-details .portfolio-info ul li p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0 0;
+}
+
+.portfolio-details .portfolio-info ul li p img {
+  filter: grayscale(1);
+  /* 도구 아이콘을 무채색으로 정돈 */
+  transition: 0.3s;
+}
+
+.portfolio-details .portfolio-info ul li p:hover img {
+  filter: grayscale(0);
+  /* 호버 시 원래 색상 노출 */
+}
+
 .video-container {
   width: 100%;
   max-height: 900px;
   margin: 0 auto;
+  display: block;
   aspect-ratio: 16/9;
   margin-bottom: 50px;
   border-radius: 12px;
   overflow: hidden;
 }
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+
 
 /* Contact Section */
 .contact .section-category {
