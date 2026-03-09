@@ -333,6 +333,7 @@ ul {
     cursor: pointer;
     transition: color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10000;
+    position: relative;
   }
 
   /* 배경 블러 처리 및 어두워짐 (사이드바 등장과 동시 진행) */
